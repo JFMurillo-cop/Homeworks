@@ -1,0 +1,39 @@
+<form class="contact-form" #contactForm="ngForm" (ngSubmit)="onSubmit(contactForm)">
+  <h3>Agregar contacto</h3>
+
+  <div class="field">
+    <label for="name">Nombre</label>
+    <input
+      id="name"
+      name="name"
+      type="text"
+      [(ngModel)]="name"
+      required
+      minlength="2"
+      #nameField="ngModel"
+      placeholder="Ej: Juan Pérez"
+    />
+    @if (nameField.invalid && nameField.touched) {
+      <small class="error">El nombre debe tener al menos 2 caracteres.</small>
+    }
+  </div>
+
+  <div class="field">
+    <label for="phone">Teléfono</label>
+    <input
+      id="phone"
+      name="phone"
+      type="tel"
+      [(ngModel)]="phone"
+      required
+      pattern="^[0-9]{7,10}$"
+      #phoneField="ngModel"
+      placeholder="Ej: 3001234567"
+    />
+    @if (phoneField.invalid && phoneField.touched) {
+      <small class="error">Ingresa un teléfono válido (7 a 10 dígitos).</small>
+    }
+  </div>
+
+  <button type="submit" [disabled]="contactForm.invalid">Agregar</button>
+</form>

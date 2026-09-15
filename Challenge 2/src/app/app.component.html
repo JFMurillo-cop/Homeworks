@@ -1,0 +1,13 @@
+<main class="app-container">
+  <header>
+    <h1>{{ title }}</h1>
+    <p class="subtitle">Angular · Reto 02 - Lista, agrega y elimina contactos</p>
+  </header>
+
+  @if (isLoading) {
+    <app-loader></app-loader>
+  } @else {
+    <app-contact-form (add)="onAddContact($event)"></app-contact-form>
+    <app-contact-list [contacts]="contacts" (delete)="onDeleteContact($event)"></app-contact-list>
+  }
+</main>

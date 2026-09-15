@@ -1,0 +1,19 @@
+<div class="list-wrapper">
+  <h3>Contactos ({{ contacts.length }})</h3>
+
+  @if (contacts.length === 0) {
+    <p class="empty">No hay contactos registrados.</p>
+  } @else {
+    <ul class="contact-list">
+      @for (contact of contacts; track contact.id) {
+        <li class="contact-item">
+          <div class="info">
+            <span class="name">{{ contact.name }}</span>
+            <span class="phone">{{ contact.phone }}</span>
+          </div>
+          <button class="delete-btn" (click)="onDelete(contact.id)">Eliminar</button>
+        </li>
+      }
+    </ul>
+  }
+</div>
