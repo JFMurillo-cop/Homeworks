@@ -1,0 +1,69 @@
+<div class="page">
+  <header class="page-header">
+    <h1>{{ title }}</h1>
+    <p class="subtitle">Fila de personas esperando para usar el cajero</p>
+  </header>
+
+  <main class="content">
+    <section class="card form-card">
+      <h2>Agregar persona a la fila</h2>
+      <form [formGroup]="personForm" (ngSubmit)="addPerson()" class="person-form">
+        <div class="field">
+          <label for="name">Nombre</label>
+          <input id="name" type="text" formControlName="name" placeholder="Ej: Laura Gómez" />
+          @if (personForm.get('name')?.invalid && personForm.get('name')?.touched) {
+            <span class="error">El nombre es obligatorio.</span>
+          }
+        </div>
+
+        <div class="field">
+          <label for="withdrawalAmount">Monto a retirar</label>
+          <input
+            id="withdrawalAmount"
+            type="text"
+            inputmode="decimal"
+            formControlName="withdrawalAmount"
+            placeholder="Ej: 150.000 o 2.069,05"
+            (input)="formatAmountInput($event)"
+          />
+          @if (personForm.get('withdrawalAmount')?.invalid && personForm.get('withdrawalAmount')?.touched) {
+            <span class="error">Ingresa un monto válido, ej: 150.000 o 2.069,05.</span>
+          }
+        </div>
+
+        <p class="hint">La fecha y hora de llegada se asignan automáticamente de forma aleatoria al agregar la persona.</p>
+
+        <div class="actions">
+          <button type="submit" class="btn primary">Agregar a la fila</button>
+          <button type="button" class="btn secondary" (click)="attendNext()" [disabled]="isQueueEmpty">
+            Atender siguiente
+          </button>
+        </div>
+      </form>
+    </section>
+
+    <section class="card queue-card">
+      <h2>Fila del cajero ({{ queueSize }})</h2>
+      <p class="hint">Ordenada por fecha y hora de llegada. La primera persona es la siguiente en ser atendida.</p>
+
+      @if (isQueueEmpty) {
+        <p class="empty-state">No hay nadie en la fila.</p>
+      } @else {
+        <ul class="queue-list">
+          @for (person of queuedPeople; track person.name + person.arrivalDate.getTime(); let i = $index) {
+            <li class="queue-item" [class.next]="i === 0">
+              @if (i === 0) {
+                <span class="badge">Siguiente en la fila</span>
+              }
+              <div class="person-info">
+                <strong>{{ person.name }}</strong>
+                <span>Monto a retirar: {{ formatAmount(person.withdrawalAmount) }}</span>
+                <span>Llegada: {{ person.arrivalDate | date:'medium' }}</span>
+              </div>
+            </li>
+          }
+        </ul>
+      }
+    </section>
+  </main>
+</div>
