@@ -1,0 +1,81 @@
+<div class="page">
+  <header class="page-header">
+    <h1>{{ title }}</h1>
+    <p class="subtitle">Estructura de datos: Pila de libros</p>
+  </header>
+
+  <main class="content">
+    <section class="card form-card">
+      <h2>Agregar nuevo libro</h2>
+      <form [formGroup]="bookForm" (ngSubmit)="addBook()" class="book-form">
+        <div class="field">
+          <label for="name">Nombre</label>
+          <input id="name" type="text" formControlName="name" placeholder="Ej: Rayuela" />
+          @if (bookForm.get('name')?.invalid && bookForm.get('name')?.touched) {
+            <span class="error">El nombre es obligatorio.</span>
+          }
+        </div>
+
+        <div class="field">
+          <label for="isbn">ISBN</label>
+          <input id="isbn" type="text" formControlName="isbn" placeholder="Ej: 978-8420671379" />
+          @if (bookForm.get('isbn')?.invalid && bookForm.get('isbn')?.touched) {
+            <span class="error">El ISBN es obligatorio.</span>
+          }
+        </div>
+
+        <div class="field">
+          <label for="author">Autor</label>
+          <input id="author" type="text" formControlName="author" placeholder="Ej: Julio Cortázar" />
+          @if (bookForm.get('author')?.invalid && bookForm.get('author')?.touched) {
+            <span class="error">El autor es obligatorio.</span>
+          }
+        </div>
+
+        <div class="field">
+          <label for="editorial">Editorial</label>
+          <input id="editorial" type="text" formControlName="editorial" placeholder="Ej: Sudamericana" />
+          @if (bookForm.get('editorial')?.invalid && bookForm.get('editorial')?.touched) {
+            <span class="error">La editorial es obligatoria.</span>
+          }
+        </div>
+
+        @if (duplicateWarning) {
+          <p class="warning">{{ duplicateWarning }}</p>
+        }
+
+        <div class="actions">
+          <button type="submit" class="btn primary">Agregar libro</button>
+          <button type="button" class="btn secondary" (click)="removeLastBook()" [disabled]="isStackEmpty">
+            Quitar último
+          </button>
+        </div>
+      </form>
+    </section>
+
+    <section class="card stack-card">
+      <h2>Pila de libros ({{ stackSize }})</h2>
+      <p class="hint">El libro que está arriba es el último que se agregó.</p>
+
+      @if (isStackEmpty) {
+        <p class="empty-state">La pila está vacía.</p>
+      } @else {
+        <ul class="stack-list">
+          @for (book of stackedBooks; track book.isbn + book.name; let i = $index) {
+            <li class="stack-item" [class.top]="i === 0">
+              @if (i === 0) {
+                <span class="badge">Tope de la pila</span>
+              }
+              <div class="book-info">
+                <strong>{{ book.name }}</strong>
+                <span>ISBN: {{ book.isbn }}</span>
+                <span>Autor: {{ book.author }}</span>
+                <span>Editorial: {{ book.editorial }}</span>
+              </div>
+            </li>
+          }
+        </ul>
+      }
+    </section>
+  </main>
+</div>
