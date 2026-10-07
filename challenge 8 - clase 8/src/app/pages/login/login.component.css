@@ -1,0 +1,90 @@
+.login-wrapper {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #eef0f5;
+}
+
+.login-card {
+  width: 340px;
+  background: white;
+  border-radius: 14px;
+  padding: 2rem 1.75rem;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+h1 {
+  margin: 0;
+  font-size: 1.4rem;
+  text-align: center;
+}
+
+.hint {
+  margin: 0 0 0.5rem;
+  text-align: center;
+  color: #888;
+  font-size: 0.8rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #333;
+}
+
+input {
+  padding: 0.55rem 0.7rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 0.95rem;
+}
+
+input:focus {
+  outline: none;
+  border-color: #3f51b5;
+}
+
+.field-error {
+  color: #c0392b;
+  font-size: 0.75rem;
+}
+
+.error-banner {
+  background: #fdecea;
+  color: #c0392b;
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  margin: 0;
+  text-align: center;
+}
+
+button {
+  margin-top: 0.5rem;
+  background: #3f51b5;
+  color: white;
+  border: none;
+  padding: 0.65rem 1rem;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+
+button:disabled {
+  background: #b0b6de;
+  cursor: not-allowed;
+}
+
+button:not(:disabled):hover {
+  background: #33409b;
+}

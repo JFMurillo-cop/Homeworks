@@ -1,0 +1,82 @@
+.page {
+  max-width: 620px;
+}
+
+.section-title {
+  margin: 1.25rem 0 0.5rem;
+  font-size: 1rem;
+  color: #3f51b5;
+}
+
+.values {
+  background: #f7f7fa;
+  padding: 0.6rem 0.9rem;
+  border-radius: 8px;
+  font-family: monospace;
+}
+
+.traversals {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.traversals div {
+  background: #eef1ff;
+  border-radius: 8px;
+  padding: 0.7rem 1rem;
+}
+
+.traversals h3 {
+  margin: 0 0 0.25rem;
+  font-size: 0.9rem;
+}
+
+.traversals p {
+  margin: 0;
+  font-family: monospace;
+  word-break: break-word;
+}
+
+.search-box {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.search-box input {
+  flex: 1;
+  padding: 0.5rem 0.7rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 0.95rem;
+}
+
+.search-box button {
+  background: #3f51b5;
+  color: white;
+  border: none;
+  padding: 0.5rem 1.1rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.search-box button:hover {
+  background: #33409b;
+}
+
+.found {
+  color: #2e7d32;
+  font-weight: 600;
+}
+
+.not-found {
+  color: #c0392b;
+  font-weight: 600;
+}
+
+#tree-container {
+  overflow-x: auto;
+  background: #fafafe;
+  border-radius: 8px;
+  border: 1px solid #eee;
+}

@@ -1,0 +1,36 @@
+<section class="page">
+  <h2>Menú</h2>
+
+  <nav class="sidebar">
+    @for (item of menu; track item.link) {
+      <div
+        class="menu-item"
+        [class.selected]="isSelected(item)"
+        (click)="selectItem(item)"
+      >
+        <span class="title">{{ item.title }}</span>
+        @if (item.children) {
+          <span class="chevron" [class.open]="isExpanded(item)">▾</span>
+        }
+      </div>
+
+      @if (item.children && isExpanded(item)) {
+        <div class="submenu">
+          @for (child of item.children; track child.link) {
+            <div
+              class="sub-item"
+              [class.selected]="isSelected(child)"
+              (click)="selectItem(child); $event.stopPropagation()"
+            >
+              {{ child.title }}
+            </div>
+          }
+        </div>
+      }
+    }
+
+    <div class="menu-item logout-item">
+      <span class="title">Logout</span>
+    </div>
+  </nav>
+</section>

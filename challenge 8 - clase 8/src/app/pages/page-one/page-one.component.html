@@ -1,0 +1,36 @@
+<section class="page">
+  <h2>Árbol Binario</h2>
+
+  <h3 class="section-title">Valores insertados</h3>
+  <p class="values">{{ valores.join(', ') }}</p>
+
+  <div class="traversals">
+    <div>
+      <h3>PreOrder</h3>
+      <p>{{ preorder.join(' → ') }}</p>
+    </div>
+    <div>
+      <h3>InOrder</h3>
+      <p>{{ inorder.join(' → ') }}</p>
+    </div>
+    <div>
+      <h3>PostOrder</h3>
+      <p>{{ postorder.join(' → ') }}</p>
+    </div>
+  </div>
+
+  <h3 class="section-title">Buscar un valor en el árbol</h3>
+  <div class="search-box">
+    <input type="number" [(ngModel)]="searchValue" placeholder="Ej: 44" />
+    <button (click)="buscar()">Buscar</button>
+  </div>
+  @if (searchResult) {
+    <p [class.found]="searchResult.found" [class.not-found]="!searchResult.found">
+      {{ searchResult.found ? '✅' : '❌' }} El valor {{ searchResult.value }}
+      {{ searchResult.found ? 'SÍ está' : 'NO está' }} en el árbol.
+    </p>
+  }
+
+  <h3 class="section-title">Visualización del árbol (D3)</h3>
+  <div id="tree-container"></div>
+</section>

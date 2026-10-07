@@ -1,0 +1,45 @@
+<div class="login-wrapper">
+  <form class="login-card" #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
+    <h1>Iniciar sesión</h1>
+    <p class="hint">Usuario demo: user&#64;mail.com / 123</p>
+
+    <div class="field">
+      <label for="email">Email</label>
+      <input
+        id="email"
+        name="email"
+        type="email"
+        [(ngModel)]="email"
+        required
+        email
+        #emailField="ngModel"
+        placeholder="user@mail.com"
+      />
+      @if (emailField.invalid && emailField.touched) {
+        <small class="field-error">Ingresa un correo válido.</small>
+      }
+    </div>
+
+    <div class="field">
+      <label for="password">Password</label>
+      <input
+        id="password"
+        name="password"
+        type="password"
+        [(ngModel)]="password"
+        required
+        #passwordField="ngModel"
+        placeholder="••••"
+      />
+      @if (passwordField.invalid && passwordField.touched) {
+        <small class="field-error">La contraseña es obligatoria.</small>
+      }
+    </div>
+
+    @if (errorMessage) {
+      <p class="error-banner">{{ errorMessage }}</p>
+    }
+
+    <button type="submit" [disabled]="loginForm.invalid">Login</button>
+  </form>
+</div>

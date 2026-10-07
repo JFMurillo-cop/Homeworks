@@ -1,0 +1,20 @@
+@if (authService.isLoggedIn()) {
+  <div class="app-shell">
+    <header>
+      <div class="user-bar">
+        <span class="username">👤 {{ authService.currentUser() }}</span>
+        <button class="logout-btn" (click)="logout()">Logout</button>
+      </div>
+      <nav>
+        <a routerLink="/page-one" routerLinkActive="active">Ejercicio 1</a>
+        <a routerLink="/page-two" routerLinkActive="active">Ejercicio 2</a>
+      </nav>
+    </header>
+
+    <main>
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+} @else {
+  <router-outlet></router-outlet>
+}
