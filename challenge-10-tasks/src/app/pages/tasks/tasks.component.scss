@@ -1,0 +1,221 @@
+@use '../../../styles/variables' as *;
+
+.tasks-page {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 2rem 1.25rem 4rem;
+}
+
+.tasks-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1.75rem;
+
+  h1 {
+    margin: 0;
+    font-size: 1.9rem;
+    font-weight: 700;
+    color: $color-text;
+  }
+
+  .user-email {
+    margin: 0.2rem 0 0;
+    color: $color-text-muted;
+    font-size: 0.9rem;
+  }
+}
+
+.btn-logout {
+  background: transparent;
+  border: 1px solid $color-border;
+  color: $color-text;
+  padding: 0.5rem 1rem;
+  border-radius: $radius-md;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.875rem;
+  transition: all 0.2s;
+
+  &:hover {
+    background: $color-danger;
+    border-color: $color-danger;
+    color: white;
+  }
+}
+
+.add-task-card {
+  @include card;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+
+  h2 {
+    margin: 0 0 1rem;
+    font-size: 1.1rem;
+    color: $color-text;
+  }
+}
+
+.add-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  gap: 0.75rem;
+
+  @media (max-width: 560px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.btn-primary {
+  background: $color-primary;
+  color: white;
+  border: none;
+  border-radius: $radius-md;
+  padding: 0.6rem 1.25rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+
+  &:hover:not(:disabled) {
+    background: $color-primary-dark;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.filters {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.filter-btn {
+  background: white;
+  border: 1px solid $color-border;
+  color: $color-text-muted;
+  padding: 0.4rem 1rem;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: all 0.2s;
+
+  &.active {
+    background: $color-primary;
+    border-color: $color-primary;
+    color: white;
+  }
+}
+
+.empty-state {
+  text-align: center;
+  color: $color-text-muted;
+  padding: 2.5rem 0;
+}
+
+.task-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.task-item {
+  @include card;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  transition: opacity 0.2s;
+
+  &.done {
+    .task-content h3 {
+      text-decoration: line-through;
+      color: $color-text-muted;
+    }
+    opacity: 0.75;
+  }
+}
+
+.task-content {
+  flex: 1;
+
+  h3 {
+    margin: 0 0 0.2rem;
+    font-size: 1rem;
+    color: $color-text;
+  }
+
+  p {
+    margin: 0;
+    font-size: 0.85rem;
+    color: $color-text-muted;
+  }
+}
+
+.task-actions {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.icon-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 0.3rem;
+  border-radius: $radius-sm;
+
+  &:hover {
+    background: rgba($color-primary, 0.1);
+  }
+}
+
+.checkbox-wrap {
+  display: flex;
+  align-items: center;
+
+  input[type='checkbox'] {
+    width: 20px;
+    height: 20px;
+    accent-color: $color-success;
+    cursor: pointer;
+  }
+}
+
+.edit-form {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  .edit-actions {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .btn-save,
+  .btn-cancel {
+    border: none;
+    border-radius: $radius-sm;
+    padding: 0.4rem 0.9rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  .btn-save {
+    background: $color-success;
+    color: white;
+  }
+
+  .btn-cancel {
+    background: $color-border;
+    color: $color-text;
+  }
+}

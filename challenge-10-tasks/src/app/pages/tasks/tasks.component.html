@@ -1,0 +1,100 @@
+<div class="tasks-page">
+  <header class="tasks-header">
+    <div>
+      <h1>Mis Tareas</h1>
+      <p class="user-email">{{ authService.currentUser()?.email }}</p>
+    </div>
+    <button class="btn-logout" (click)="logout()">Cerrar sesión</button>
+  </header>
+
+  <section class="add-task-card">
+    <h2>Nueva tarea</h2>
+    <form (ngSubmit)="addTask()" #addForm="ngForm" class="add-form">
+      <input
+        type="text"
+        name="newTitle"
+        class="form-control"
+        placeholder="Título de la tarea"
+        [(ngModel)]="newTitle"
+        required
+      />
+      <input
+        type="text"
+        name="newDescription"
+        class="form-control"
+        placeholder="Descripción (opcional)"
+        [(ngModel)]="newDescription"
+      />
+      <button type="submit" class="btn-primary" [disabled]="!newTitle.trim()">Agregar</button>
+    </form>
+  </section>
+
+  <section class="filters">
+    <button
+      class="filter-btn"
+      [class.active]="filter() === 'all'"
+      (click)="filter.set('all')"
+    >
+      Todas
+    </button>
+    <button
+      class="filter-btn"
+      [class.active]="filter() === 'pending'"
+      (click)="filter.set('pending')"
+    >
+      Pendientes
+    </button>
+    <button
+      class="filter-btn"
+      [class.active]="filter() === 'done'"
+      (click)="filter.set('done')"
+    >
+      Completadas
+    </button>
+  </section>
+
+  @if (tasksService.isLoading()) {
+    <p class="empty-state">Cargando tareas...</p>
+  } @else if (filteredTasks.length === 0) {
+    <p class="empty-state">No hay tareas para mostrar.</p>
+  } @else {
+    <ul class="task-list">
+      @for (task of filteredTasks; track task.id) {
+        <li class="task-item" [class.done]="task.done">
+          @if (editingId() === task.id) {
+            <div class="edit-form">
+              <input type="text" class="form-control" [(ngModel)]="editTitle" name="editTitle-{{ task.id }}" />
+              <input
+                type="text"
+                class="form-control"
+                [(ngModel)]="editDescription"
+                name="editDescription-{{ task.id }}"
+              />
+              <div class="edit-actions">
+                <button class="btn-save" (click)="saveEdit(task)">Guardar</button>
+                <button class="btn-cancel" (click)="cancelEdit()">Cancelar</button>
+              </div>
+            </div>
+          } @else {
+            <label class="checkbox-wrap">
+              <input type="checkbox" [checked]="task.done" (change)="toggleDone(task)" />
+              <span class="checkmark"></span>
+            </label>
+
+            <div class="task-content">
+              <h3>{{ task.title }}</h3>
+              @if (task.description) {
+                <p>{{ task.description }}</p>
+              }
+            </div>
+
+            <div class="task-actions">
+              <button class="icon-btn" (click)="startEdit(task)" title="Editar">✏️</button>
+              <button class="icon-btn" (click)="deleteTask(task)" title="Eliminar">🗑️</button>
+            </div>
+          }
+        </li>
+      }
+    </ul>
+  }
+</div>

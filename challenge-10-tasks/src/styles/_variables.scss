@@ -1,0 +1,31 @@
+// Variables SASS compartidas por toda la app (colores, radios, sombras)
+
+$color-primary: #4f46e5;
+$color-primary-dark: #4338ca;
+$color-danger: #dc2626;
+$color-success: #16a34a;
+
+$color-bg-start: #eef2ff;
+$color-bg-end: #e0e7ff;
+$color-surface: #ffffff;
+$color-text: #1f2937;
+$color-text-muted: #6b7280;
+$color-border: #e5e7eb;
+
+$radius-sm: 6px;
+$radius-md: 10px;
+$radius-lg: 16px;
+
+$shadow-card: 0 10px 30px rgba(79, 70, 229, 0.12);
+
+// Mixin reutilizable para tarjetas
+@mixin card {
+  background: $color-surface;
+  border-radius: $radius-lg;
+  box-shadow: $shadow-card;
+}
+
+// Función simple de ejemplo: convierte px a rem
+@function px-to-rem($px, $base: 16) {
+  @return ($px / $base) * 1rem;
+}
