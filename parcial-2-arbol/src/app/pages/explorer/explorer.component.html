@@ -1,0 +1,138 @@
+<div class="explorer-page">
+  <header class="explorer-header">
+    <div>
+      <h1>🗂️ Sistema de Carpetas y Archivos</h1>
+      <p class="user-email">{{ authService.currentUser()?.email }}</p>
+    </div>
+    <button class="btn-logout" (click)="logout()">Cerrar sesión</button>
+  </header>
+
+  <div class="toolbar">
+    <button class="btn-primary" (click)="openCreateAtRoot()">+ Nueva carpeta o archivo</button>
+  </div>
+
+  <section class="tree-card">
+    @if (fileSystemService.isLoading()) {
+      <p class="empty-state">Cargando árbol...</p>
+    } @else if (roots.length === 0) {
+      <p class="empty-state">Aún no hay carpetas ni archivos. Crea el primero arriba.</p>
+    } @else {
+      <div class="tree-root">
+        @for (node of roots; track node.id) {
+          <app-tree-node
+            [node]="node"
+            [depth]="0"
+            [canModify]="true"
+            (addChild)="openCreateInside($event)"
+            (remove)="askDelete($event)"
+            (rename)="openRename($event)"
+          ></app-tree-node>
+        }
+      </div>
+    }
+  </section>
+
+  @if (createTarget(); as target) {
+    <div class="modal-overlay" (click)="closeCreateModal()">
+      <div class="modal-card" (click)="$event.stopPropagation()">
+        <h2>Crear en {{ target.parentName }}</h2>
+
+        @if (createError()) {
+          <div class="alert-error">{{ createError() }}</div>
+        }
+
+        <div class="form-group">
+          <label>Tipo</label>
+          <div class="type-toggle">
+            <button
+              type="button"
+              class="type-btn"
+              [class.active]="newType === 'folder'"
+              (click)="newType = 'folder'"
+            >
+              📁 Carpeta
+            </button>
+            <button
+              type="button"
+              class="type-btn"
+              [class.active]="newType === 'file'"
+              (click)="newType = 'file'"
+            >
+              📄 Archivo
+            </button>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="newName">Nombre</label>
+          <input
+            id="newName"
+            type="text"
+            class="form-control"
+            [(ngModel)]="newName"
+            name="newName"
+            autofocus
+          />
+        </div>
+
+        <div class="modal-actions">
+          <button class="btn-secondary" (click)="closeCreateModal()">Cancelar</button>
+          <button class="btn-primary" [disabled]="!newName.trim()" (click)="confirmCreate()">
+            Crear
+          </button>
+        </div>
+      </div>
+    </div>
+  }
+
+  @if (renameTarget(); as node) {
+    <div class="modal-overlay" (click)="cancelRename()">
+      <div class="modal-card" (click)="$event.stopPropagation()">
+        <h2>Renombrar {{ node.type === 'folder' ? 'carpeta' : 'archivo' }}</h2>
+
+        @if (renameError()) {
+          <div class="alert-error">{{ renameError() }}</div>
+        }
+
+        <div class="form-group">
+          <label for="renameValue">Nombre</label>
+          <input
+            id="renameValue"
+            type="text"
+            class="form-control"
+            [(ngModel)]="renameValue"
+            name="renameValue"
+            autofocus
+            (keyup.enter)="confirmRename()"
+          />
+        </div>
+
+        <div class="modal-actions">
+          <button class="btn-secondary" (click)="cancelRename()">Cancelar</button>
+          <button class="btn-primary" [disabled]="!renameValue.trim()" (click)="confirmRename()">
+            Guardar
+          </button>
+        </div>
+      </div>
+    </div>
+  }
+
+  @if (deleteTarget(); as node) {
+    <div class="modal-overlay" (click)="cancelDelete()">
+      <div class="modal-card" (click)="$event.stopPropagation()">
+        <h2>¿Eliminar "{{ node.name }}"?</h2>
+        <p class="modal-text">
+          @if (node.type === 'folder' && node.children.length > 0) {
+            Esta carpeta tiene {{ node.countDescendants() }} elemento(s) dentro. Se eliminarán también.
+          } @else {
+            Esta acción no se puede deshacer.
+          }
+        </p>
+        <div class="modal-actions">
+          <button class="btn-secondary" (click)="cancelDelete()">Cancelar</button>
+          <button class="btn-danger" (click)="confirmDelete()">Eliminar</button>
+        </div>
+      </div>
+    </div>
+  }
+</div>

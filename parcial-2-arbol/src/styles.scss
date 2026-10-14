@@ -1,0 +1,29 @@
+@use './styles/variables' as *;
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  background: $color-bg-start;
+  color: $color-text;
+}
+
+.form-control {
+  padding: 0.6rem 0.75rem;
+  border: 1px solid $color-border;
+  border-radius: $radius-md;
+  font-size: 0.95rem;
+  width: 100%;
+  font-family: inherit;
+
+  &:focus {
+    outline: none;
+    border-color: $color-primary;
+    box-shadow: 0 0 0 3px rgba($color-primary, 0.15);
+  }
+}

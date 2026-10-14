@@ -1,0 +1,42 @@
+<div class="node-row" [style.padding-left.px]="depth * 20">
+  <span
+    class="chevron"
+    [class.invisible]="node.type === 'file' || node.children.length === 0"
+    (click)="toggleExpand()"
+  >
+    {{ expanded() ? '▾' : '▸' }}
+  </span>
+
+  <span class="icon">{{ node.type === 'folder' ? '📁' : '📄' }}</span>
+
+  <span class="name" [class.file-name]="node.type === 'file'">{{ node.name }}</span>
+
+  <span class="meta">por {{ node.createdBy }}</span>
+
+  @if (canModify) {
+    <span class="actions">
+      @if (node.type === 'folder') {
+        <button class="icon-btn" title="Crear dentro de esta carpeta" (click)="onAddChild($event)">
+          ➕
+        </button>
+      }
+      <button class="icon-btn" title="Renombrar" (click)="onRename($event)">✏️</button>
+      <button class="icon-btn danger" title="Eliminar" (click)="onRemove($event)">🗑️</button>
+    </span>
+  }
+</div>
+
+@if (node.type === 'folder' && expanded()) {
+  <div class="children">
+    @for (child of node.children; track child.id) {
+      <app-tree-node
+        [node]="child"
+        [depth]="depth + 1"
+        [canModify]="canModify"
+        (addChild)="onChildAddChild($event)"
+        (remove)="onChildRemove($event)"
+        (rename)="onChildRename($event)"
+      ></app-tree-node>
+    }
+  </div>
+}

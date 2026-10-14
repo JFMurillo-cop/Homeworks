@@ -1,0 +1,32 @@
+// Variables SASS compartidas por toda la app
+
+$color-primary: #0f766e;
+$color-primary-dark: #0d5f58;
+$color-danger: #dc2626;
+$color-success: #16a34a;
+$color-folder: #f59e0b;
+$color-file: #64748b;
+
+$color-bg-start: #ecfeff;
+$color-bg-end: #d1fae5;
+$color-surface: #ffffff;
+$color-sidebar: #0f172a;
+$color-text: #1e293b;
+$color-text-muted: #64748b;
+$color-border: #e2e8f0;
+
+$radius-sm: 6px;
+$radius-md: 10px;
+$radius-lg: 16px;
+
+$shadow-card: 0 10px 30px rgba(15, 118, 110, 0.12);
+
+@mixin card {
+  background: $color-surface;
+  border-radius: $radius-lg;
+  box-shadow: $shadow-card;
+}
+
+@function px-to-rem($px, $base: 16) {
+  @return ($px / $base) * 1rem;
+}

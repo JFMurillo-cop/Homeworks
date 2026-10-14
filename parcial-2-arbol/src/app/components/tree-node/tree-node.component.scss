@@ -1,0 +1,87 @@
+@use '../../../styles/variables' as *;
+
+.node-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding-top: 0.4rem;
+  padding-bottom: 0.4rem;
+  border-radius: $radius-sm;
+  cursor: default;
+  transition: background 0.15s;
+
+  &:hover {
+    background: rgba($color-primary, 0.06);
+
+    .actions {
+      opacity: 1;
+    }
+  }
+}
+
+.chevron {
+  width: 1rem;
+  flex-shrink: 0;
+  cursor: pointer;
+  color: $color-text-muted;
+  font-size: 0.75rem;
+  user-select: none;
+
+  &.invisible {
+    visibility: hidden;
+    cursor: default;
+  }
+}
+
+.icon {
+  flex-shrink: 0;
+  font-size: 1rem;
+}
+
+.name {
+  font-size: 0.92rem;
+  color: $color-text;
+  font-weight: 500;
+}
+
+.file-name {
+  font-weight: 400;
+  color: $color-text-muted;
+}
+
+.meta {
+  margin-left: auto;
+  font-size: 0.72rem;
+  color: $color-text-muted;
+  white-space: nowrap;
+  padding-right: 0.5rem;
+}
+
+.actions {
+  display: flex;
+  gap: 0.25rem;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+
+.icon-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 0.85rem;
+  padding: 0.15rem 0.3rem;
+  border-radius: $radius-sm;
+
+  &:hover {
+    background: rgba($color-primary, 0.15);
+  }
+
+  &.danger:hover {
+    background: rgba($color-danger, 0.15);
+  }
+}
+
+.children {
+  display: flex;
+  flex-direction: column;
+}
