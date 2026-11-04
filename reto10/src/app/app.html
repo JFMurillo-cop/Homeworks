@@ -1,0 +1,12 @@
+@if (auth.session()) {
+  <nav>
+    <a routerLink="/tareas" routerLinkActive="activo">Tareas</a>
+    <a routerLink="/perfil" routerLinkActive="activo">Perfil</a>
+    <span class="espacio"></span>
+    <span class="usuario">{{ auth.session()?.user?.email }}</span>
+    <button class="secundario" (click)="salir()">Salir</button>
+  </nav>
+}
+<main>
+  <router-outlet />
+</main>

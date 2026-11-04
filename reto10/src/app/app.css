@@ -1,0 +1,7 @@
+nav { display: flex; align-items: center; gap: 1rem; padding: .75rem 1.25rem;
+  border-bottom: 1px solid #e3e6e4; }
+nav a { text-decoration: none; color: #3b4540; padding-bottom: 2px; }
+nav a.activo { color: #0f6b4a; border-bottom: 2px solid #0f6b4a; }
+.espacio { flex: 1; }
+.usuario { color: #7a837e; font-size: .9rem; }
+main { max-width: 640px; margin: 2rem auto; padding: 0 1.25rem; }

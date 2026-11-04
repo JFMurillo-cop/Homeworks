@@ -1,0 +1,23 @@
+<h1>Mis tareas</h1>
+
+<form class="nueva" (ngSubmit)="agregar()">
+  <input name="nueva" [(ngModel)]="nueva" placeholder="Nueva tarea" required>
+  <button type="submit" class="primario">Agregar</button>
+</form>
+
+@if (msg()) { <p class="msg">{{ msg() }}</p> }
+
+<ul class="lista">
+  @for (t of tareas(); track t.id) {
+    <li [class.hecha]="t.completada">
+      <label>
+        <input type="checkbox" [checked]="t.completada"
+               (change)="completar(t)">
+        <span>{{ t.titulo }}</span>
+      </label>
+      <button class="secundario" (click)="borrar(t.id)">Borrar</button>
+    </li>
+  } @empty {
+    <li class="vacia">No hay tareas. Escribe una arriba para empezar.</li>
+  }
+</ul>

@@ -1,0 +1,12 @@
+:root { color-scheme: light; }
+* { box-sizing: border-box; }
+body { margin: 0; font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  background: #fbfcfb; color: #1c2420; line-height: 1.5; }
+input[type="text"], input[type="email"], input[type="password"], input:not([type]) {
+  padding: .55rem .7rem; border: 1px solid #c9d0cc; border-radius: 6px; font: inherit; background: #fff; }
+button { font: inherit; padding: .5rem .9rem; border-radius: 6px; cursor: pointer; border: 1px solid transparent; }
+button.primario { background: #0f6b4a; color: #fff; }
+button.primario:hover { background: #0c5a3e; }
+button.secundario { background: #fff; color: #3b4540; border-color: #c9d0cc; }
+button.secundario:hover { background: #f0f3f1; }
+:focus-visible { outline: 2px solid #0f6b4a; outline-offset: 2px; }

@@ -1,0 +1,10 @@
+h1 { margin: 0 0 1rem; font-size: 1.5rem; }
+.nueva { display: flex; gap: .5rem; margin-bottom: 1rem; }
+.nueva input { flex: 1; }
+.lista { list-style: none; padding: 0; margin: 0; }
+.lista li { display: flex; align-items: center; justify-content: space-between;
+  gap: 1rem; padding: .6rem 0; border-bottom: 1px solid #e3e6e4; }
+.lista label { display: flex; align-items: center; gap: .6rem; cursor: pointer; }
+.hecha span { text-decoration: line-through; color: #7a837e; }
+.vacia { color: #7a837e; justify-content: flex-start !important; }
+.msg { color: #b3261e; }

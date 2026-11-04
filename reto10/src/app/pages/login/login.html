@@ -1,0 +1,10 @@
+<section class="tarjeta">
+  <h1>Ingresar</h1>
+  <form (ngSubmit)="entrar()">
+    <input type="email" name="email" [(ngModel)]="email" placeholder="Correo" required>
+    <input type="password" name="clave" [(ngModel)]="clave" placeholder="Contraseña" required minlength="6">
+    <button type="submit" class="primario">Entrar</button>
+    <button type="button" class="secundario" (click)="registrar()">Crear cuenta</button>
+  </form>
+  @if (msg) { <p class="msg">{{ msg }}</p> }
+</section>

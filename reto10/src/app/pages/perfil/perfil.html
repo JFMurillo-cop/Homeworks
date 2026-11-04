@@ -1,0 +1,4 @@
+<h1>Mi perfil</h1>
+<p>Sube una imagen para tu avatar.</p>
+<input type="file" accept="image/*" (change)="subir($event)">
+@if (url()) { <img [src]="url()" width="160" alt="Avatar"> }

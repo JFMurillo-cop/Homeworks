@@ -1,0 +1,4 @@
+.tarjeta { max-width: 360px; margin: 4rem auto; }
+h1 { margin: 0 0 1rem; font-size: 1.5rem; }
+form { display: flex; flex-direction: column; gap: .6rem; }
+.msg { margin-top: 1rem; color: #b3261e; }
