@@ -1,0 +1,137 @@
+<div class="page">
+  <header class="page-header">
+    <h1>🕸️ Grafo de amigos y ciudades</h1>
+  </header>
+
+  <div class="layout">
+    <aside class="panel">
+      <section class="card">
+        <h2>Nueva ciudad</h2>
+        @if (errorCiudad()) {
+          <div class="alert-error">{{ errorCiudad() }}</div>
+        }
+        <form (ngSubmit)="agregarCiudad()" class="form">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Nombre de la ciudad"
+            [(ngModel)]="nuevaCiudad"
+            name="nuevaCiudad"
+            required
+          />
+          <button type="submit" class="btn-primary" [disabled]="!nuevaCiudad.trim()">
+            Agregar ciudad
+          </button>
+        </form>
+      </section>
+
+      <section class="card">
+        <h2>Nueva persona</h2>
+        @if (errorPersona()) {
+          <div class="alert-error">{{ errorPersona() }}</div>
+        }
+        @if (graphService.cities().length === 0) {
+          <p class="hint">Primero crea al menos una ciudad.</p>
+        } @else {
+          <form (ngSubmit)="agregarPersona()" class="form">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Nombre"
+              [(ngModel)]="nombrePersona"
+              name="nombrePersona"
+              required
+            />
+            <input
+              type="number"
+              class="form-control"
+              placeholder="Edad"
+              [(ngModel)]="edadPersona"
+              name="edadPersona"
+              min="0"
+              required
+            />
+            <select class="form-control" [(ngModel)]="ciudadPersonaId" name="ciudadPersonaId" required>
+              <option value="" disabled selected>Ciudad...</option>
+              @for (c of graphService.cities(); track c.id) {
+                <option [value]="c.id">{{ c.data.name }}</option>
+              }
+            </select>
+            <button
+              type="submit"
+              class="btn-primary"
+              [disabled]="!nombrePersona.trim() || !edadPersona || !ciudadPersonaId"
+            >
+              Agregar persona
+            </button>
+          </form>
+        }
+      </section>
+
+      <section class="card">
+        <h2>Personas por ciudad</h2>
+        @if (graphService.cities().length === 0) {
+          <p class="hint">Aún no hay ciudades.</p>
+        } @else {
+          <select
+            class="form-control"
+            [ngModel]="ciudadConsultaId()"
+            (ngModelChange)="consultarCiudad($event)"
+            name="ciudadConsultaId"
+          >
+            <option value="">Elige una ciudad...</option>
+            @for (c of graphService.cities(); track c.id) {
+              <option [value]="c.id">{{ c.data.name }}</option>
+            }
+          </select>
+
+          @if (resultadoConsulta(); as personas) {
+            @if (personas.length === 0) {
+              <p class="hint">Nadie vive todavía en esta ciudad.</p>
+            } @else {
+              <ul class="result-list">
+                @for (p of personas; track p.id) {
+                  <li>{{ p.data.name }} ({{ p.data.age }} años)</li>
+                }
+              </ul>
+            }
+          }
+        }
+      </section>
+
+      <button class="btn-secondary" (click)="imprimirEnConsola()">
+        Imprimir grafo en consola
+      </button>
+    </aside>
+
+    <main class="graph-panel">
+      @if (graphService.isEmpty()) {
+        <p class="empty-state">
+          Agrega una ciudad y una persona para ver el grafo aquí.
+        </p>
+      } @else {
+        <app-graph-view class="graph-canvas"></app-graph-view>
+
+        <div class="node-list">
+          <h3>Nodos del grafo</h3>
+          <ul>
+            @for (n of graphService.nodes(); track n.id) {
+              <li>
+                <span>
+                  {{ n.data.kind === 'city' ? '🏙️' : '🧑' }}
+                  {{ n.data.name }}
+                  @if (n.data.kind === 'person') {
+                    <span class="muted">({{ n.data.age }} años)</span>
+                  }
+                </span>
+                <button class="icon-btn danger" title="Eliminar" (click)="eliminarNodo(n.id)">
+                  🗑️
+                </button>
+              </li>
+            }
+          </ul>
+        </div>
+      }
+    </main>
+  </div>
+</div>
