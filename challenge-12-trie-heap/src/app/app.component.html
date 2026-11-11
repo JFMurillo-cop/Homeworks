@@ -1,0 +1,109 @@
+<div class="page">
+  <header class="page-header">
+    <h1>🔎 Buscador inteligente de productos</h1>
+  </header>
+
+  <div class="layout">
+    <aside class="panel">
+      <section class="card">
+        <h2>Nuevo producto</h2>
+        @if (errorProducto()) {
+          <div class="alert-error">{{ errorProducto() }}</div>
+        }
+        <form (ngSubmit)="agregarProducto()" class="form">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Nombre (ej: air max)"
+            [(ngModel)]="nombreProducto"
+            name="nombreProducto"
+            required
+          />
+          <input
+            type="number"
+            class="form-control"
+            placeholder="Popularidad (0-100)"
+            [(ngModel)]="popularidadProducto"
+            name="popularidadProducto"
+            min="0"
+            required
+          />
+          <button
+            type="submit"
+            class="btn-primary"
+            [disabled]="!nombreProducto.trim() || popularidadProducto === null"
+          >
+            Agregar producto
+          </button>
+        </form>
+
+        @if (srv.isEmpty()) {
+          <button class="btn-secondary" (click)="cargarEjemplo()">
+            Cargar ejemplo del reto
+          </button>
+        }
+      </section>
+
+      <section class="card">
+        <h2>Productos guardados ({{ srv.productos().length }})</h2>
+        @if (srv.isEmpty()) {
+          <p class="hint">Aún no hay productos.</p>
+        } @else {
+          <ul class="result-list">
+            @for (p of srv.productos(); track p.name) {
+              <li>{{ p.name }} <span class="muted">({{ p.popularity }})</span></li>
+            }
+          </ul>
+        }
+      </section>
+    </aside>
+
+    <main class="search-panel">
+      <section class="card search-card">
+        <h2>Buscar por prefijo</h2>
+        <form (ngSubmit)="buscar()" class="search-form">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Prefijo (ej: air)"
+            [(ngModel)]="prefijo"
+            name="prefijo"
+            required
+          />
+          <input
+            type="number"
+            class="form-control k-input"
+            placeholder="Top K"
+            [(ngModel)]="k"
+            name="k"
+            min="1"
+          />
+          <button type="submit" class="btn-primary" [disabled]="!prefijo.trim()">
+            Buscar
+          </button>
+        </form>
+
+        @if (buscoAlgunaVez()) {
+          @if (resultados().length === 0) {
+            <p class="empty-state">
+              No hay productos que empiecen por "{{ prefijo }}".
+            </p>
+          } @else {
+            <ol class="results">
+              @for (r of resultados(); track r.name) {
+                <li class="result-item">
+                  <span class="name">{{ r.name }}</span>
+                  <span class="popularity">⭐ {{ r.popularity }}</span>
+                </li>
+              }
+            </ol>
+          }
+        } @else {
+          <p class="empty-state">
+            Escribe un prefijo (por ejemplo "air") y dale a Buscar.
+          </p>
+        }
+      </section>
+    </main>
+  </div>
+</div>
