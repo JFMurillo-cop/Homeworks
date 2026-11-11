@@ -1,0 +1,102 @@
+:root {
+  --bg: #16131d;
+  --surface: #221e2d;
+  --line: #34304a;
+  --ink: #f4f2f8;
+  --muted: #a9a4bd;
+  --accent: #ff4f8b;
+  --accent-2: #5ad1ff;
+  --error: #ff8a80;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.45;
+}
+
+.page { max-width: 1100px; margin: 0 auto; padding: 2rem 1.25rem 3rem; }
+
+.top h1 {
+  margin: 0;
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  letter-spacing: -0.02em;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  width: fit-content;
+}
+.top p { margin: .3rem 0 1.25rem; color: var(--muted); }
+
+.search { position: relative; max-width: 640px; }
+.search input {
+  width: 100%;
+  font: inherit;
+  font-size: 1.05rem;
+  padding: .85rem 2.6rem .85rem 1rem;
+  background: var(--surface);
+  color: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+.search input::placeholder { color: #8a85a1; }
+.search input::-webkit-search-cancel-button { display: none; }
+.search .clear {
+  position: absolute; right: .5rem; top: 50%; transform: translateY(-50%);
+  width: 2rem; height: 2rem; border-radius: 50%;
+  border: 0; background: transparent; color: var(--muted); font-size: 1.4rem; cursor: pointer;
+}
+.search .clear:hover { color: var(--ink); background: var(--line); }
+
+.chips { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: .8rem; }
+.chips button {
+  font: inherit; font-size: .88rem; cursor: pointer;
+  padding: .3rem .8rem; border-radius: 999px;
+  background: transparent; color: var(--muted); border: 1px solid var(--line);
+}
+.chips button:hover { color: var(--ink); border-color: var(--accent-2); }
+
+:focus-visible { outline: 2px solid var(--accent-2); outline-offset: 2px; }
+
+.status { min-height: 1.5rem; margin: 1.5rem 0 1rem; color: var(--muted); }
+.error {
+  margin: 0 0 1rem; padding: .7rem 1rem; border-radius: 10px;
+  color: var(--error); border: 1px solid #6b3a3a; background: #2a1a1f;
+}
+
+/* Cuadrícula tipo "masonry" con columnas CSS */
+.grid { list-style: none; margin: 0; padding: 0; column-count: 4; column-gap: 12px; transition: opacity .2s; }
+.grid.busy { opacity: .45; }
+.card {
+  position: relative; break-inside: avoid; margin-bottom: 12px;
+  border-radius: 10px; overflow: hidden; background: var(--surface);
+}
+.card img { display: block; width: 100%; height: auto; }
+.card .copy {
+  position: absolute; left: 8px; bottom: 8px;
+  font: inherit; font-size: .8rem; cursor: pointer;
+  padding: .25rem .6rem; border-radius: 6px; border: 0;
+  background: rgba(22, 19, 29, .85); color: var(--ink);
+  opacity: 0; transition: opacity .15s;
+}
+.card:hover .copy, .card:focus-within .copy { opacity: 1; }
+@media (hover: none) { .card .copy { opacity: 1; } }
+
+.more { display: flex; justify-content: center; margin-top: 1.5rem; }
+.more button {
+  font: inherit; cursor: pointer; padding: .7rem 1.6rem; border-radius: 10px;
+  background: var(--accent); color: #fff; border: 0; font-weight: 600;
+}
+.more button:hover:not(:disabled) { filter: brightness(1.1); }
+.more button:disabled { opacity: .6; cursor: progress; }
+
+footer { margin-top: 2.5rem; text-align: center; color: var(--muted); font-size: .85rem; }
+
+@media (max-width: 900px) { .grid { column-count: 3; } }
+@media (max-width: 640px) { .grid { column-count: 2; } }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
