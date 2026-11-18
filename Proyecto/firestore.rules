@@ -1,0 +1,54 @@
+rules_version = '2';
+
+// Reglas de seguridad de Cloud Firestore para CampusMarket.
+// Publicarlas en: Firebase Console → Firestore Database → Reglas.
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function signedIn() {
+      return request.auth != null;
+    }
+    function isAdmin() {
+      return signedIn()
+        && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin';
+    }
+
+    // Perfil de usuario. Nadie puede asignarse el rol admin a sí mismo.
+    match /users/{uid} {
+      allow read: if request.auth.uid == uid || isAdmin();
+      allow create: if request.auth.uid == uid && request.resource.data.role == 'customer';
+      allow update: if (request.auth.uid == uid
+                        && request.resource.data.role == resource.data.role) || isAdmin();
+    }
+
+    // Catálogo: lectura pública. Un cliente solo puede tocar stock/sold (lo hace la
+    // transacción de compra) y nunca dejar stock negativo. El admin puede todo.
+    match /products/{id} {
+      allow read: if true;
+      allow write: if isAdmin();
+      allow update: if signedIn()
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['stock', 'sold'])
+        && request.resource.data.stock >= 0
+        && request.resource.data.sold >= resource.data.sold;
+    }
+
+    // Pedidos: el cliente crea los suyos y los lee; el admin los gestiona.
+    match /orders/{id} {
+      allow create: if signedIn()
+        && request.resource.data.userId == request.auth.uid
+        && request.resource.data.status == 'pendiente';
+      allow read: if signedIn() && (resource.data.userId == request.auth.uid || isAdmin());
+      allow update: if isAdmin();
+    }
+
+    // Chat de soporte: hilo por usuario, accesible por el dueño y el admin.
+    match /chats/{uid} {
+      allow read, write: if request.auth.uid == uid || isAdmin();
+      match /messages/{msgId} {
+        allow read: if request.auth.uid == uid || isAdmin();
+        allow create: if (request.auth.uid == uid || isAdmin())
+          && request.resource.data.senderId == request.auth.uid;
+      }
+    }
+  }
+}
