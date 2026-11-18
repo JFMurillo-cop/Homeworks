@@ -15,8 +15,8 @@ y **chat de soporte en tiempo real**. Incluye panel de administración para aten
 ## 🔗 Enlaces
 
 - **Propuesta gráfica (Figma):** _pegar enlace_
-- **Despliegue (Netlify):** _pegar enlace_
-- **Repositorio:** _pegar enlace_
+- **Despliegue (Netlify):** https://campus-market-uao.netlify.app
+- **Repositorio:** https://github.com/JFMurillo-cop/Homeworks/tree/proyecto-final/Proyecto
 - **Documento final:** [docs/DOCUMENTO_FINAL.md](docs/DOCUMENTO_FINAL.md)
 
 ## 🧰 Tecnologías
