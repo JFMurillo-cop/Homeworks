@@ -1,0 +1,31 @@
+<header class="navbar">
+  <div class="container bar">
+    <a routerLink="/" class="brand">🛍️ Campus<span>Market</span></a>
+
+    <button class="toggle" (click)="menuOpen.set(!menuOpen())" aria-label="Abrir menú">☰</button>
+
+    <nav [class.open]="menuOpen()" (click)="menuOpen.set(false)">
+      <!-- Menú público -->
+      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Inicio</a>
+      <a routerLink="/catalogo" routerLinkActive="active">Catálogo</a>
+      <a routerLink="/mapa" routerLinkActive="active">Mapa de entregas</a>
+
+      @if (auth.isLoggedIn()) {
+        <!-- Menú privado -->
+        <a routerLink="/mis-pedidos" routerLinkActive="active">Mis pedidos</a>
+        <a routerLink="/soporte" routerLinkActive="active">Soporte</a>
+        @if (auth.isAdmin()) {
+          <a routerLink="/admin" routerLinkActive="active" class="admin">Panel admin</a>
+        }
+        <a routerLink="/carrito" routerLinkActive="active" class="cart">
+          🛒 <span class="count">{{ cart.count() }}</span>
+        </a>
+        <span class="user">👤 {{ auth.user()?.name }}</span>
+        <button class="btn small secondary" (click)="logout()">Salir</button>
+      } @else {
+        <a routerLink="/login" class="btn small ghost">Ingresar</a>
+        <a routerLink="/registro" class="btn small">Crear cuenta</a>
+      }
+    </nav>
+  </div>
+</header>

@@ -1,0 +1,17 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1;
+}
+
+.config-banner {
+  background: var(--warn-soft);
+  color: var(--warn);
+  text-align: center;
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+}

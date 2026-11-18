@@ -1,0 +1,39 @@
+<div class="container page">
+  <h1>Catálogo</h1>
+
+  @if (products.usingSeed() && !products.loading()) {
+    <div class="alert warn">
+      Mostrando el catálogo de ejemplo. Un administrador puede cargarlo a la base de datos desde el panel.
+    </div>
+  }
+
+  <div class="toolbar">
+    <app-search-box [(query)]="query" />
+    <select (change)="setSort($any($event.target).value)" aria-label="Ordenar">
+      <option value="relevancia">Ordenar: relevancia</option>
+      <option value="vendidos">Más vendidos</option>
+      <option value="precio-asc">Precio: menor a mayor</option>
+      <option value="precio-desc">Precio: mayor a menor</option>
+    </select>
+  </div>
+
+  <div class="chips">
+    <button class="chip" [class.active]="!category()" (click)="setCategory(null)">Todas</button>
+    @for (c of products.categories; track c) {
+      <button class="chip" [class.active]="category() === c" (click)="setCategory(c)">{{ c }}</button>
+    }
+  </div>
+
+  <p class="muted">{{ results().length }} producto(s)</p>
+
+  <div class="grid">
+    @for (p of results(); track p.id) {
+      <app-product-card [product]="p" (add)="addToCart($event)" />
+    } @empty {
+      <div class="empty">
+        <div class="icon">🔎</div>
+        <p>No encontramos productos para "{{ query() }}".</p>
+      </div>
+    }
+  </div>
+</div>
