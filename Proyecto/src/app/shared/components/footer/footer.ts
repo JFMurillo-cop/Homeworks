@@ -5,8 +5,8 @@ import { Component } from '@angular/core';
   template: `
     <footer>
       <div class="container">
-        <span>🛍️ CampusMarket · Proyecto final de Angular</span>
-        <span class="muted">Angular + Firebase</span>
+        <span>🛍️ CampusMarket</span>
+        <span class="muted">© {{ year }}</span>
       </div>
     </footer>
   `,
@@ -15,4 +15,6 @@ import { Component } from '@angular/core';
     .container { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
   `,
 })
-export class Footer {}
+export class Footer {
+  protected readonly year = new Date().getFullYear();
+}
