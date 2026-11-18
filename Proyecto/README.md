@@ -8,9 +8,8 @@ y **chat de soporte en tiempo real**. Incluye panel de administración para aten
 
 | Nombre | Código | Rama | Aporte principal |
 |---|---|---|---|
-| Juan Felipe Murillo | _código_ | `feature/...` | _completar_ |
-| _Integrante 2_ | _código_ | `feature/...` | _completar_ |
-| _Integrante 3_ | _código_ | `feature/...` | _completar_ |
+| Juan Felipe Murillo | 226530 | `feature/juan-murillo` | Arquitectura Angular, estructuras de datos, integración con Firebase (auth, Firestore, reglas), páginas y despliegue en Netlify |
+| Nicolás García Torres | 2226092 | `feature/nicolas-garcia` | _por completar_ |
 
 ## 🔗 Enlaces
 
