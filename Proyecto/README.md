@@ -9,11 +9,11 @@ y **chat de soporte en tiempo real**. Incluye panel de administración para aten
 | Nombre | Código | Rama | Aporte principal |
 |---|---|---|---|
 | Juan Felipe Murillo | 226530 | `feature/juan-murillo` | Arquitectura Angular, estructuras de datos, integración con Firebase (auth, Firestore, reglas), páginas y despliegue en Netlify |
-| Nicolás García Torres | 2226092 | `feature/nicolas-garcia` | _por completar_ |
+| Nicolás García Torres | 2226092 | `feature/nicolas-garcia` | Propuesta gráfica en Figma (pantallas de inicio, catálogo, mapa, login y registro) |
 
 ## 🔗 Enlaces
 
-- **Propuesta gráfica (Figma): https://www.figma.com/design/FbV2Ph4X8Gh6huMS8ODgAZ/CampusMarket-%E2%80%93-Propuesta-gr%C3%A1fica?node-id=0-1&t=ZrcM2ziljV2aeSH9-1
+- **Propuesta gráfica (Figma):** https://www.figma.com/design/FbV2Ph4X8Gh6huMS8ODgAZ/CampusMarket-%E2%80%93-Propuesta-gr%C3%A1fica?node-id=0-1&t=ZrcM2ziljV2aeSH9-1
 - **Despliegue (Netlify):** https://campus-market-uao.netlify.app
 - **Repositorio:** https://github.com/JFMurillo-cop/Homeworks/tree/main/Proyecto
 - **Documento final:** [docs/DOCUMENTO_FINAL.pdf](docs/DOCUMENTO_FINAL.pdf) (versión Markdown: [docs/DOCUMENTO_FINAL.md](docs/DOCUMENTO_FINAL.md))
