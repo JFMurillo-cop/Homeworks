@@ -13,7 +13,7 @@ y **chat de soporte en tiempo real**. Incluye panel de administración para aten
 
 ## 🔗 Enlaces
 
-- **Propuesta gráfica (Figma):** _pegar enlace_
+- **Propuesta gráfica (Figma): https://www.figma.com/design/FbV2Ph4X8Gh6huMS8ODgAZ/CampusMarket-%E2%80%93-Propuesta-gr%C3%A1fica?node-id=0-1&t=ZrcM2ziljV2aeSH9-1
 - **Despliegue (Netlify):** https://campus-market-uao.netlify.app
 - **Repositorio:** https://github.com/JFMurillo-cop/Homeworks/tree/main/Proyecto
 - **Documento final:** [docs/DOCUMENTO_FINAL.pdf](docs/DOCUMENTO_FINAL.pdf) (versión Markdown: [docs/DOCUMENTO_FINAL.md](docs/DOCUMENTO_FINAL.md))
