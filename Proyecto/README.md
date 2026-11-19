@@ -26,7 +26,7 @@ y **chat de soporte en tiempo real**. Incluye panel de administración para aten
 - Cloud Firestore (base de datos en tiempo real, transacciones)
 - Netlify (despliegue del frontend)
 - Vitest (pruebas unitarias de las estructuras de datos)
-- Figma (propuesta gráfica, elaborada por Nicolás García Torres)
+- Figma (propuesta gráfica)
 
 ## 🧱 Estructuras de datos
 

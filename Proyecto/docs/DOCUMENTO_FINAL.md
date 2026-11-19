@@ -47,7 +47,7 @@ productos de cafetería, papelería, tecnología y ropa, y recibirlos en cualqui
 | **SCSS** | Estilos con *design tokens* (variables CSS) alineados con la propuesta gráfica. |
 | **Vitest** | Pruebas unitarias de las estructuras de datos. |
 | **Netlify** | Despliegue del frontend (ver `netlify.toml`). |
-| **Figma** | Propuesta gráfica de las pantallas principales (inicio, catálogo, mapa, login y registro), elaborada por Nicolás García Torres. |
+| **Figma** | Propuesta gráfica de las pantallas principales (inicio, catálogo, mapa, login y registro). |
 
 ### Organización del proyecto
 
