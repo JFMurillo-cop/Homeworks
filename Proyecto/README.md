@@ -27,7 +27,7 @@ y **chat de soporte en tiempo real**. Incluye panel de administración para aten
 - Netlify (despliegue del frontend)
 - Vitest (pruebas unitarias de las estructuras de datos)
 - Figma (propuesta gráfica)
-- Claude Code: asistente de IA usado como apoyo en el desarrollo (detalle en el documento final, sección 2.1)
+- Claude Code: asistente de IA usado como apoyo (corrección de errores y dudas de frontend y backend)
 
 ## 🧱 Estructuras de datos
 
