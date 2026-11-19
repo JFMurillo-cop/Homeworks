@@ -47,6 +47,25 @@ productos de cafetería, papelería, tecnología y ropa, y recibirlos en cualqui
 | **SCSS** | Estilos con *design tokens* (variables CSS) alineados con la propuesta gráfica. |
 | **Vitest** | Pruebas unitarias de las estructuras de datos. |
 | **Netlify** | Despliegue del frontend (ver `netlify.toml`). |
+| **Figma** | Propuesta gráfica de las pantallas principales. |
+| **Claude Code (IA de Anthropic)** | Asistente de programación usado durante el desarrollo (ver sección 2.1). |
+
+### 2.1 Uso de inteligencia artificial
+
+Durante el desarrollo se utilizó **Claude Code**, un asistente de programación con IA, como
+herramienta de apoyo. Se usó para:
+
+- Generar la estructura inicial del proyecto Angular y buena parte del código: componentes,
+  servicios, guards y las implementaciones de las estructuras de datos con sus pruebas.
+- Proponer el modelo de datos de Firestore, sus reglas de seguridad y la transacción de compra.
+- Diagnosticar y corregir errores de compilación, de configuración y de despliegue.
+- Resolver dudas técnicas de frontend (Angular, signals, router) y backend (Firebase, Netlify).
+- Redactar la primera versión de la documentación.
+
+El equipo definió la idea y el alcance del sistema, configuró los servicios (proyecto de Firebase,
+autenticación, base de datos, reglas y despliegue en Netlify), probó la aplicación de punta a punta,
+pidió y validó los ajustes de diseño y funcionamiento, organizó el trabajo en ramas y elaboró la
+propuesta gráfica en Figma.
 
 ### Organización del proyecto
 
