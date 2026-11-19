@@ -47,8 +47,6 @@ productos de cafetería, papelería, tecnología y ropa, y recibirlos en cualqui
 | **SCSS** | Estilos con *design tokens* (variables CSS) alineados con la propuesta gráfica. |
 | **Vitest** | Pruebas unitarias de las estructuras de datos. |
 | **Netlify** | Despliegue del frontend (ver `netlify.toml`). |
-| **Figma** | Propuesta gráfica de las pantallas principales. |
-| **Claude Code (IA de Anthropic)** | Asistente de programación usado como apoyo durante el desarrollo: corrección de errores y resolución de dudas de frontend y backend. |
 
 ### Organización del proyecto
 
