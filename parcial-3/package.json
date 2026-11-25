@@ -4,8 +4,8 @@
   "type": "module",
   "scripts": {
     "demo": "node src/demo.js",
-    "sass": "sass scss/main.scss css/main.css",
-    "sass:watch": "sass --watch scss/main.scss css/main.css",
+    "sass": "sass --no-source-map scss/main.scss css/main.css",
+    "sass:watch": "sass --watch --no-source-map scss/main.scss css/main.css",
     "start": "npx serve ."
   },
   "devDependencies": {

@@ -18,9 +18,15 @@ export class Trie {
     this.size = 0;
   }
 
-  // Normaliza para que la búsqueda no distinga mayúsculas
+  // Normaliza para que la búsqueda no distinga mayúsculas ni tildes:
+  // "Dákiti", "DAKITI" y "dakiti" recorren el mismo camino del árbol.
+  // (NFD separa la letra de su tilde y luego se borra la tilde)
   static normalize(text) {
-    return text.trim().toLowerCase();
+    return text
+      .trim()
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[̀-ͯ]/g, "");
   }
 
   // 1. Insertar canción  -> O(L), L = largo del título
