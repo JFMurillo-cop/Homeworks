@@ -1,6 +1,6 @@
 // ===== Variables reutilizables del dashboard =====
 
-// Paleta (modo oscuro estilo reproductor de música)
+// Paleta (modo oscuro con el verde de la marca)
 $color-primary: #1ed760;
 $color-bg: #0a0a0a;
 $color-panel: #121212;
@@ -36,11 +36,6 @@ $radius: 8px;
 $radius-lg: 12px;
 $spacing: 16px;
 $transition: 0.2s ease;
-
-$sidebar-width: 300px;
-$now-width: 340px;
-$topbar-height: 64px;
-$player-height: 80px;
 
 $breakpoints: (
   mobile: 700px,

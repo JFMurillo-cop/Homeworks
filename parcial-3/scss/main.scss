@@ -2,7 +2,7 @@
 //   _variables  -> colores, medidas, mapas
 //   _mixins     -> bloques de estilo reutilizables
 //   _components -> botones, pills, portadas, inputs
-//   _layout     -> grid de 3 columnas + reproductor
-//   _sections   -> buscador, biblioteca, ranking, recomendaciones, player
+//   _layout     -> estructura general y grid de tarjetas del dashboard
+//   _sections   -> marca, indicadores, buscador, ranking, recomendaciones y easter egg
 @use "layout";
 @use "sections";

@@ -44,13 +44,6 @@
   flex-shrink: 0;
 }
 
-// Scrollbar fina
-@mixin thin-scroll {
-  overflow-y: auto;
-  scrollbar-width: thin;
-  scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
-}
-
 // Media query por nombre: @include respond(mobile) { ... }
 @mixin respond($name) {
   @media (max-width: map.get($breakpoints, $name)) {
