@@ -1,0 +1,59 @@
+@use "sass:map";
+@use "variables" as *;
+
+// ===== Mixins reutilizables =====
+
+@mixin flex($direction: row, $justify: flex-start, $align: center, $gap: 0) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+  gap: $gap;
+}
+
+// Panel redondeado (las tres columnas)
+@mixin panel {
+  background: $color-panel;
+  border-radius: $radius;
+  overflow: hidden;
+}
+
+// Fila que se ilumina al pasar el mouse
+@mixin row-hover($bg: $color-hover) {
+  transition: background $transition;
+  border-radius: $radius;
+  cursor: pointer;
+  &:hover {
+    background: $bg;
+  }
+}
+
+// Texto cortado con "..."
+@mixin ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+// Botón circular
+@mixin circle($size) {
+  width: $size;
+  height: $size;
+  border-radius: 50%;
+  @include flex($justify: center);
+  flex-shrink: 0;
+}
+
+// Scrollbar fina
+@mixin thin-scroll {
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+}
+
+// Media query por nombre: @include respond(mobile) { ... }
+@mixin respond($name) {
+  @media (max-width: map.get($breakpoints, $name)) {
+    @content;
+  }
+}

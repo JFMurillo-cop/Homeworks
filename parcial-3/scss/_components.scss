@@ -1,0 +1,136 @@
+@use "sass:color";
+@use "sass:list";
+@use "variables" as *;
+@use "mixins" as *;
+
+// ===== Componentes pequeños reutilizables =====
+
+// Placeholder para títulos de panel (se usa con @extend)
+%panel-title {
+  font-size: 1rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+// Pastillas (filtros y botones)
+.pill {
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 999px;
+  border: none;
+  background: $color-elevated;
+  color: $color-text;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background $transition, transform $transition;
+
+  &:hover { background: $color-highlight; }
+  &.is-active { background: $color-text; color: #000; }
+
+  &--ghost { background: transparent; &:hover { background: $color-hover; } }
+
+  &--primary {
+    background: $color-primary;
+    color: #000;
+    &:hover {
+      background: color.adjust($color-primary, $lightness: 8%);
+      transform: scale(1.03);
+    }
+  }
+}
+
+// Botón de play verde
+.play-btn {
+  @include circle(36px);
+  border: none;
+  background: $color-text;
+  color: #000;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: transform $transition;
+  &:hover { transform: scale(1.07); }
+
+  &--big {
+    @include circle(56px);
+    background: $color-primary;
+    font-size: 1.3rem;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.35);
+  }
+}
+
+// Botones de ícono
+.icon-btn {
+  border: none;
+  background: none;
+  color: $color-muted;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: color $transition;
+  &:hover { color: $color-text; }
+
+  &--round {
+    @include circle(46px);
+    background: $color-elevated;
+    color: $color-text;
+    font-size: 1.4rem;
+  }
+}
+
+// Inputs del formulario
+.field {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  background: $color-hover;
+  color: $color-text;
+  font: inherit;
+  outline: none;
+  &:focus { border-color: $color-muted; }
+}
+
+// Portadas generadas: gradiente según el artista
+.cover {
+  @include flex($justify: center);
+  border-radius: 4px;
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.9);
+  background: $color-highlight;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  flex-shrink: 0;
+
+  // @for genera 40 portadas, cada una con un tono de color distinto
+  @for $i from 1 through $cover-count {
+    $c: hsl(($i * $cover-hue-step) % 360deg, 55%, 42%);
+    &--c#{$i} {
+      background: linear-gradient(135deg, color.adjust($c, $lightness: 15%), color.adjust($c, $lightness: -15%));
+    }
+  }
+
+  // Favoritos (easter egg): gradiente de dos tonos con brillo dorado
+  @each $name, $pair in $favorites {
+    $base: list.nth($pair, 1);
+    $accent: list.nth($pair, 2);
+    &--#{$name} {
+      background: linear-gradient(135deg, $accent, $base 60%, color.adjust($base, $lightness: -15%));
+    }
+  }
+
+  &--top {
+    background: linear-gradient(135deg, #450af5, #c4efd9);
+  }
+}
+
+// Insignia "explícito"
+.explicit {
+  display: inline-block;
+  font-size: 0.6rem;
+  font-weight: 700;
+  padding: 1px 4px;
+  margin-right: 4px;
+  border-radius: 2px;
+  background: $color-muted;
+  color: #000;
+  vertical-align: middle;
+}

@@ -1,0 +1,8 @@
+// Archivo principal: une todos los partials
+//   _variables  -> colores, medidas, mapas
+//   _mixins     -> bloques de estilo reutilizables
+//   _components -> botones, pills, portadas, inputs
+//   _layout     -> grid de 3 columnas + reproductor
+//   _sections   -> buscador, biblioteca, ranking, recomendaciones, player
+@use "layout";
+@use "sections";

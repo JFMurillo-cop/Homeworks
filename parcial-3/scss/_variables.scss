@@ -1,0 +1,48 @@
+// ===== Variables reutilizables del dashboard =====
+
+// Paleta (modo oscuro estilo reproductor de música)
+$color-primary: #1ed760;
+$color-bg: #0a0a0a;
+$color-panel: #121212;
+$color-elevated: #1f1f1f;
+$color-hover: #2a2a2a;
+$color-highlight: #333333;
+$color-text: #ffffff;
+$color-muted: #b3b3b3;
+$color-subtle: #727272;
+
+// Portadas de artistas normales: .cover--c1 ... .cover--c40
+// se generan con un bucle @for que va girando el tono (hue) del color
+$cover-count: 40;
+$cover-hue-step: 137.5deg; // "ángulo dorado": colores vecinos bien distintos
+
+// Easter egg 🌵🐰🐻: los 3 favoritos tienen portada y tema especial
+// (color de portada, color de acento al sonar)
+$favorites: (
+  travis: (#8b4513, #e0a458),
+  badbunny: (#1e6fa8, #7fd1ff),
+  kanye: (#5a2a82, #f3c623),
+);
+
+// Podio del ranking
+$podium: (
+  1: #ffd700,
+  2: #c0c0c0,
+  3: #cd7f32,
+);
+
+$font-main: "Circular", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+$radius: 8px;
+$radius-lg: 12px;
+$spacing: 16px;
+$transition: 0.2s ease;
+
+$sidebar-width: 300px;
+$now-width: 340px;
+$topbar-height: 64px;
+$player-height: 80px;
+
+$breakpoints: (
+  mobile: 700px,
+  tablet: 1100px,
+);

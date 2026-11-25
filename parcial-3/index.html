@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Spotify for Education · Panel de rankings</title>
+  <link rel="stylesheet" href="css/main.css" />
+</head>
+<body>
+  <div class="app">
+
+    <!-- ===== Barra de marca de la empresa ===== -->
+    <header class="brand-bar">
+      <div class="brand">
+        <svg class="brand__logo" viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="12" cy="12" r="12" />
+          <path d="M6 9.2c4-1.2 8.6-.8 12 1.2M6.6 12.4c3.4-1 7.2-.6 10 1M7.2 15.4c2.8-.8 5.6-.5 7.8.8" />
+        </svg>
+        <span class="brand__name">Spotify</span>
+        <span class="brand__tag">for Education</span>
+      </div>
+      <div class="brand-user" title="Equipo de producto">EP</div>
+    </header>
+
+    <!-- ===== Título + KPIs ===== -->
+    <section class="page-head">
+      <div>
+        <h1 class="page-head__title">Panel de rankings</h1>
+      </div>
+      <div class="kpis">
+        <div class="kpi"><span class="kpi__icon">♪</span><span class="kpi__label">Canciones</span><span class="kpi__value" id="kpiSongs">0</span></div>
+        <div class="kpi"><span class="kpi__icon">▶</span><span class="kpi__label">Reproducciones</span><span class="kpi__value" id="kpiPlays">0</span></div>
+        <div class="kpi kpi--highlight"><span class="kpi__icon">★</span><span class="kpi__label">#1 más escuchada</span><span class="kpi__value kpi__value--sm" id="kpiTop">—</span></div>
+      </div>
+    </section>
+
+    <main class="dashboard">
+      <!-- 1. Buscador predictivo (TRIE) -->
+      <section class="card">
+        <div class="card__head">
+          <h2>Buscar canción</h2>
+        </div>
+        <div class="search">
+          <span class="search__icon">⌕</span>
+          <input id="searchInput" class="search__input" type="text"
+                 placeholder="¿Qué quieres escuchar?" autocomplete="off" />
+        </div>
+        <div id="searchStatus" class="search__status"></div>
+        <ul id="suggestions" class="list"></ul>
+
+        <div class="card__divider"></div>
+
+        <div class="card__head">
+          <h2>Agregar canción</h2>
+        </div>
+        <form id="addForm" class="add-form">
+          <label class="add-form__label" for="newTitle">Título</label>
+          <input id="newTitle" class="field" placeholder="Ej: Mi Gente" required autocomplete="off" />
+
+          <label class="add-form__label" for="newArtist">Cantante</label>
+          <select id="newArtist" class="field" required></select>
+          <input id="newArtistName" class="field" placeholder="Nombre del cantante nuevo" autocomplete="off" hidden />
+          <select id="newArtistGenre" class="field" hidden></select>
+          <div id="artistHint" class="add-form__hint"></div>
+
+          <label class="add-form__label" for="newPlays">Reproducciones</label>
+          <input id="newPlays" class="field" type="text" inputmode="numeric" placeholder="Ej: 56.640.568" autocomplete="off" />
+          <button class="pill pill--primary" type="submit">Insertar</button>
+          <div id="addStatus" class="add-form__status"></div>
+        </form>
+      </section>
+
+      <!-- 2. Ranking (MAX HEAP) -->
+      <section class="card card--wide">
+        <div class="card__head">
+          <h2>TOP canciones más escuchadas</h2>
+        </div>
+        <div class="filters" id="filters"></div>
+        <ol id="ranking" class="ranking"></ol>
+      </section>
+
+      <!-- 3. Recomendaciones (GRAFO) -->
+      <section class="card">
+        <div class="card__head">
+          <h2>Recomendaciones</h2>
+        </div>
+        <div class="now" id="now"></div>
+        <h3 class="list__title">Similares directas</h3>
+        <ul id="recs1" class="list"></ul>
+        <h3 class="list__title">También te puede gustar</h3>
+        <ul id="recs2" class="list"></ul>
+      </section>
+    </main>
+
+    <footer class="foot">© 2026 Spotify for Education · Parcial 3 · Estructuras de datos</footer>
+  </div>
+
+  <script type="module" src="src/app.js"></script>
+</body>
+</html>

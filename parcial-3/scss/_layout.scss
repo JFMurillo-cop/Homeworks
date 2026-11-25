@@ -1,0 +1,52 @@
+@use "variables" as *;
+@use "mixins" as *;
+
+// ===== Estructura general del dashboard =====
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: $font-main;
+  background: $color-bg;
+  color: $color-text;
+}
+
+button,
+input,
+select {
+  font-family: inherit;
+}
+
+.app {
+  min-height: 100vh;
+  @include flex($direction: column, $align: stretch);
+}
+
+.dashboard {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr 1fr;
+  gap: $spacing * 1.5;
+  padding: 0 $spacing * 2 $spacing * 2;
+  align-items: start;
+
+  @include respond(tablet) {
+    grid-template-columns: 1fr 1fr;
+    .card--wide { grid-column: 1 / -1; order: -1; }
+  }
+
+  @include respond(mobile) {
+    grid-template-columns: 1fr;
+    padding: 0 $spacing $spacing;
+  }
+}
+
+.foot {
+  margin-top: auto;
+  padding: $spacing * 1.5;
+  text-align: center;
+  font-size: 0.75rem;
+  color: $color-subtle;
+  border-top: 1px solid $color-hover;
+}

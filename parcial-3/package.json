@@ -1,0 +1,14 @@
+{
+  "name": "parcial3-musica",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "demo": "node src/demo.js",
+    "sass": "sass scss/main.scss css/main.css",
+    "sass:watch": "sass --watch scss/main.scss css/main.css",
+    "start": "npx serve ."
+  },
+  "devDependencies": {
+    "sass": "^1.80.0"
+  }
+}
